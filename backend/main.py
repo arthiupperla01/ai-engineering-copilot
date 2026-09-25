@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 
+from backend.api.routes.health import router as health_router
 from backend.config import settings
 
 app = FastAPI()
@@ -13,6 +14,4 @@ def root() -> dict[str, str]:
     }
 
 
-@app.get("/health")
-def health() -> dict[str, str]:
-    return {"status": "healthy"}
+app.include_router(health_router)
